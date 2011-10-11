@@ -38,5 +38,5 @@
 
 // canvas,宽，高，缩放
 SnakeGame.init('#snake-game',720,480,1);
-// SnakeGame.init('#game',480,320,2);
+// SnakeGame.init('#snake-game',480,320,2);
 ```

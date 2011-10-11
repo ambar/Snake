@@ -28,21 +28,33 @@ var EventEmitter = {
 		});
 		return self;
 	},
-	removeListener	: function (type) {
-		var evts = this._events;
-		if(type && evts[type]){
-			evts[type] = [];
-		}else{
-			this._events = {};
+	removeListener	: function (type,fn) {
+		var _evts = this._events;
+		if(!_evts || arguments.length === 0){
+			this._events = {}
+			return this;
+		};
+		var listeners = _evts[type];
+		if(type && listeners){
+			_evts[type] = fn ? listeners.filter(function(f) { return f !== fn }) : [] 
 		}
 		return this;
+	},
+	once : function(type,fn) {
+		var self = this;
+		var one = function() {
+			self.off(type,one);
+			fn.apply(this,arguments);
+		};
+		self.on(type,one);
+		return self;
 	}
-}
+};
 
-// prevent override
-EventEmitter.on     = EventEmitter.addListener;
-EventEmitter.emit   = EventEmitter.fireEvent;
-EventEmitter.unbind = EventEmitter.removeListener;
+// shortcut apis & prevent override
+EventEmitter.on   = EventEmitter.addListener;
+EventEmitter.off  = EventEmitter.removeListener;
+EventEmitter.emit = EventEmitter.fireEvent;
 
 host.EventEmitter = EventEmitter;
 

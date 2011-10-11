@@ -177,7 +177,7 @@ var stage = {
 	}
 	,reset	: function() {
 		this.removeAll();
-		this.unbind();
+		this.off();
 		return this;
 	}
 }

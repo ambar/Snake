@@ -2,6 +2,7 @@
 * 所有游戏逻辑
 */
 ;(function(host,undefined) {
+// host = this;
 
 var stage = wo.stage;
 var input = wo.input, rand = wo.rand, V = wo.Vector, Color = wo.Color;
@@ -70,8 +71,8 @@ var game_init = function (canvas,width,height,scale) {
 
 var Snake = Entity.extend({
 	head_color : 'sienna',
-	tail_color_odd : '#f9f5ea',
-	tail_color_even : '#8c524d',
+	tail_color_odd : Color.parse(0xf9f5ea),
+	tail_color_even : Color.parse(0x8c524d),
 	tail_len_default : 3,
 	/*
 	* x,y 为单位坐标
@@ -226,9 +227,11 @@ var Snake = Entity.extend({
 	},
 	// 单位坐标
 	drawPart : function(ctx,x,y,color) {
-		ctx.lineWidth = 1;
-		ctx.fillStyle = color;
-		ctx.fillRect(x*unit,y*unit,unit,unit);
+		/*ctx.lineWidth = 1;
+		ctx.fillStyle = color+'';
+		ctx.fillRect(x*unit,y*unit,unit,unit);*/
+		var ball = {x:x,y:y,color:color,rad:unit/2}
+		Bean.prototype.draw.call(ball,ctx);
 	},
 	drawHead : function(ctx) {
 		var head = this.head;

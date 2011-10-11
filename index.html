@@ -15,9 +15,9 @@
 			}
 
 			#snake-game-wrapper *{margin: 0;padding: 0;}
-			#snake-game-wrapper p{margin:1em;}
-			#snake-game-wrapper .panel{margin:2em 1em;color:#333;float:left;width:150px;}
-			#snake-game-wrapper .panel li{padding:0;font-size:1.2em;list-style:none;}
+			#snake-game-wrapper .panel{font-size:1.2em;margin:2em 1em;color:#333;float:left;width:150px;}
+			#snake-game-wrapper .panel p{margin:0 0 1em;}
+			#snake-game-wrapper .panel li{padding:0;list-style:none;}
 			#snake-game-wrapper .panel em{font-weight:bold;}
 
 	</style>
@@ -44,6 +44,7 @@
 
 </div>
 
+<!--debug-->
 <script src="js/wo.js"></script>
 <script src="js/event.js"></script>
 <script src="js/input.js"></script>
@@ -52,6 +53,9 @@
 <script src="js/stage.js"></script>
 <script src="js/entities.js"></script>
 <script src="js/snake.js"></script>
+
+<!--all in one
+<script src="js/snake-game-packed.js"></script>-->
 <script>
 	document.addEventListener('DOMContentLoaded',function() {
 		// 显示调试用网格
@@ -60,7 +64,7 @@
 		// SnakeGame.penetrable = false;
 		// canvas,宽，高，缩放
 		SnakeGame.init('#snake-game',720,480,1);
-		// SnakeGame.init('#game',480,320,2);
+		// SnakeGame.init('#snake-game',480,320,2);
 	},false);
 </script>	
 </body>

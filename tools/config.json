@@ -1,0 +1,30 @@
+{
+	"input":	[
+		"../js/wo.js",
+		"../js/event.js",
+		"../js/input.js",
+		"../js/vec.js",
+		"../js/color.js",
+		"../js/stage.js",
+		"../js/entities.js",
+		"../js/snake.js"
+	],
+	"output":	"../js/snake-game-packed.js",
+	"semicolon_at_end" : true,
+	"comment":	"comment.txt",
+	"uglify_option": {
+		"strict_semicolons" : false,
+		"mangle_options" : {
+			"toplevel" : false,
+			"except" :[]
+		},
+		"squeeze_options" : {
+			"make_seqs" : true,
+			"dead_code" : true
+		},
+		"gen_options" : {
+			"beautify" : false,
+			"space_colon" : false
+		}
+	}
+}

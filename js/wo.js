@@ -145,7 +145,7 @@ HTMLElement.prototype.text = function (text) {
 }
 
 Number.prototype.times = function(action,scope){
-	var i = 0, n = this.valueOf(), scope = scope || window;
+	var i = 0, n = this.valueOf(), scope = scope || this;
 	n < 0 && (n=0);
 	while(i<n)
 		action.call(scope,i++);
