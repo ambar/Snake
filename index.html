@@ -58,10 +58,15 @@
 <script src="js/snake-game-packed.js"></script>-->
 <script>
 	document.addEventListener('DOMContentLoaded',function() {
-		// 显示调试用网格
+		// 网格单位长度, 默认 40
+		// SnakeGame.unit = 60;
+		
+		// 显示调试用网格, 默认 false
 		// SnakeGame.debug = true;
-		// 设定穿墙
+		
+		// 设定穿墙, 默认 true
 		// SnakeGame.penetrable = false;
+		
 		// canvas,宽，高，缩放
 		SnakeGame.init('#snake-game',720,480,1);
 		// SnakeGame.init('#snake-game',480,320,2);

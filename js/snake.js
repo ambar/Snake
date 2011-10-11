@@ -384,6 +384,10 @@ var game_destroy = function() {
 }
 
 var SnakeGame = Object.create({},{
+	unit	: {
+		get : function() { return unit },
+		set : function(value) { return unit = value }
+	},
 	score : {
 		get : function() { return score; }
 	},
