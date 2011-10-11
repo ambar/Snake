@@ -30,10 +30,13 @@
 ## 使用
 
 ```
-// 显示调试用网格
+// 网格单位长度, 默认 40
+// SnakeGame.unit = 60;
+
+// 显示调试用网格, 默认 false
 // SnakeGame.debug = true;
 
-// 设定穿墙
+// 设定穿墙, 默认 true
 // SnakeGame.penetrable = false;
 
 // canvas,宽，高，缩放
