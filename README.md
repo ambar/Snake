@@ -5,7 +5,7 @@
 ## 起源
 
 * [http://zh.wikipedia.org/wiki/贪食蛇](http://zh.wikipedia.org/wiki/%E8%B4%AA%E9%A3%9F%E8%9B%87)
-* [http://en.wikipedia.org/wiki/Snake_(video_game)](http://en.wikipedia.org/wiki/Snake_(video_game))
+* [http://en.wikipedia.org/wiki/Snake_(video_game)](http://en.wikipedia.org/wiki/Snake_(video_game)
 
 ## 所得
 	
