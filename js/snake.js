@@ -42,8 +42,12 @@ var game_init = function (canvas,width,height,scale) {
 	game_play();
 
 	win.addEventListener('keydown',function(e) {
-		// e.preventDefault();
-		switch( pressed(e.keyCode) ){
+		var key = e.keyCode;
+		// prevent page scroll
+		if( [37,38,39,40].indexOf(key) > -1 ){
+			e.preventDefault();
+		}
+		switch( pressed(key) ){
 			case 'r' : {
 				game_restart();
 				break;
