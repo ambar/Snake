@@ -69,7 +69,6 @@ var stage = {
 		this.resize(width||320,height||240,scale);
 		this.ctx = canvas.getContext('2d');
 
-		// this.paused_text = new GameText(this.width/2,this.height/10,'PAUSED',40);
 		this.ticker = new_ticker(_fps,this.tick.bind(this),this.canvas);
 		this.run();
 
@@ -157,7 +156,6 @@ var stage = {
 			this.emit('run');
 			// 防止暂停后 deltaTime 变得极大
 			time.lastUpdate = now();
-			// this.remove(this.paused_text);
 		}
 
 		return this;
@@ -167,12 +165,13 @@ var stage = {
 		this.drawAll();
 	}
 	,pause	: function () {
-		// this.add(this.paused_text);
-		if(this.ticker.running){
+
+		if(this.ticker.running){			
 			this.ticker.stop();
-			this.drawAll();
 			this.emit('pause');
+			this.drawAll();
 		}
+
 		return this;
 	}
 	,reset	: function() {

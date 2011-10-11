@@ -16,8 +16,7 @@ var w,h;
 var unit = 40, scale = 1, fps = 10;
 // var unit = 20, scale = 1;
 var speed = unit, $score, score;
-var snake = null, bean = null, grid = null, game_started, debug = false, penetrable = true;
-
+var snake = null, bean = null, grid = null, paused_text = null, game_started, debug = false, penetrable = true;
 
 var unit_in_px = function(pixel) {
 	return Math.ceil( pixel / unit ) - 1
@@ -39,6 +38,7 @@ var game_init = function (canvas,width,height,scale) {
 	$score = $('#snake-score')
 	
 	grid = new Grid();
+	paused_text = new GameText(stage.width/2,stage.height/2,'PAUSED',40);
 	game_play();
 
 	win.addEventListener('keydown',function(e) {
@@ -71,6 +71,7 @@ var game_init = function (canvas,width,height,scale) {
 			}
 		}
 	},false);
+
 }
 
 var Snake = Entity.extend({
@@ -371,6 +372,13 @@ var game_play = function() {
 	if(debug){
 		stage.add(grid);
 	}
+
+	stage.on('pause',function() {
+		stage.add(paused_text);
+		stage.once('run',function() {
+			stage.remove(paused_text);
+		})
+	})
 	
 }
 
