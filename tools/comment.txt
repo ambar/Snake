@@ -1,6 +1,0 @@
-/*
-* Snake Game 
-* @by	ambar
-* @site https://github.com/ambar/Snake
-* @packed %date%
-*/
