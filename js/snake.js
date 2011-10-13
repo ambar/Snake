@@ -1,12 +1,11 @@
 /*
 * 所有游戏逻辑
 */
-;(function(host,undefined) {
-// host = this;
+;(function(undefined) {
 
-var stage = wo.stage;
-var input = wo.input, rand = wo.rand, V = wo.Vector, Color = wo.Color;
-var pressed = input.letterFromKeyCode;
+var host = this, wo = host.wo;
+var stage = wo.stage, rand = wo.rand, V = wo.Vector, Color = wo.Color;
+var input = wo.input, pressed = input.letterFromKeyCode;
 
 var win = host, doc = host.document, $ = wo.$query
 
@@ -14,7 +13,6 @@ var w,h;
 
 // 网络单位长度，画布缩放比例
 var unit = 40, scale = 1, fps = 10;
-// var unit = 20, scale = 1;
 var speed = unit, $score, score;
 var snake = null, bean = null, grid = null, paused_text = null, game_started, debug = false, penetrable = true;
 
@@ -58,7 +56,6 @@ var game_init = function (canvas,width,height,scale) {
 			}
 			case 'c' : {
 				SnakeGame.background = Color.random(48);
-				// SnakeGame.background = 'rgb('+rand(48)+','+rand(48)+','+rand(48)+')';
 				break;
 			}
 			case 'd' : {
@@ -436,4 +433,4 @@ var SnakeGame = Object.create({},{
 // exports
 host.SnakeGame = SnakeGame;
 
-})(this);
+}).call(this);
