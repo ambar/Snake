@@ -19,10 +19,10 @@ var speed = unit, $score, score;
 var snake = null, bean = null, grid = null, paused_text = null, game_started, debug = false, penetrable = true;
 
 var unit_in_px = function(pixel) {
-	return Math.ceil( pixel / unit ) - 1
+	return Math.ceil( pixel / unit )
 };
 var rand_pos = function() {
-	return V([rand(max_unit_x),rand(max_unit_y)])
+	return V([rand(max_unit_x-1),rand(max_unit_y-1)])
 }
 
 var max_unit_x,max_unit_y;
@@ -199,13 +199,13 @@ var Snake = Entity.extend({
 		this.forEachPart(function(p) {
 			// -> 上下左右
 			if(p.y < 0){
-				reset = [p.x,max_unit_y];
-			}else if(p.y > max_unit_y){
-				reset = [p.x,-1];
+				reset = [p.x,max_unit_y-1];
+			}else if(p.y > max_unit_y-1){
+				reset = [p.x,0];
 			}else if(p.x < 0){
-				reset = [max_unit_x,p.y];
-			}else if(p.x > max_unit_x){
-				reset = [-1,p.y];
+				reset = [max_unit_x-1,p.y];
+			}else if(p.x > max_unit_x-1){
+				reset = [0,p.y];
 			}
 			if(reset){
 				collided = true;
@@ -264,12 +264,12 @@ var Grid = Entity.extend({
 		ctx.beginPath();
 
 		ctx.lineWidth = 1
-		ctx.strokeStyle = '#eee';
+		ctx.strokeStyle = 'rgba(238,238,238,.2)';
 
 		var text = function (text, x, y, color) {
 			ctx.font = '10px Tahoma';
 			ctx.textAlign = 'center';
-			ctx.fillStyle = color || '#ccc';
+			ctx.fillStyle = color || 'rgba(204,204,204,.5)';
 			ctx.fillText(text, x, y);
 		}
 		var row = h / unit, col = w / unit, half = unit / 2;
