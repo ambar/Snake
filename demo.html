@@ -1,0 +1,79 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<title>Canvas游戏-贪吃蛇复刻版</title>
+	<style type="text/css">
+		body{
+			background-color: #f9f5ea;
+			/*height : 999em;*/
+		}
+
+		#snake-game-wrapper{
+			margin:1em;padding:1em;overflow:hidden;
+			font: 62.5% Monaco,Consolas;background-color: #f9f5ea;
+		}
+			#snake-game{
+				background-color: rgb(9, 32, 37);
+			}
+
+			#snake-game-wrapper *{margin: 0;padding: 0;}
+			#snake-game-wrapper .panel{font-size:1.2em;margin:2em 1em;color:#333;float:left;width:150px;}
+			#snake-game-wrapper .panel p{margin:0 0 1em;}
+			#snake-game-wrapper .panel li{padding:0;list-style:none;}
+			#snake-game-wrapper .panel em{font-weight:bold;}
+
+	</style>
+</head>
+<body>
+
+<div id="snake-game-wrapper">
+
+	<canvas id="snake-game">
+		<p>您的浏览器太古老了。试试：	<a href="http://www.google.com/chrome">Chrome</a></p>
+	</canvas>
+
+	<section class="panel">
+		<p><strong>键盘移动</strong></p>
+		<ul>
+			<li><em>P</em> 键 暂停/继续</li>
+			<li><em>R</em> 键 重新开始</li>
+			<li><em>C</em> 键 背景颜色</li>
+			<li><em>D</em> 键 显示/隐藏网格</li>
+			<li><em>W</em> 键 是否可穿墙</li>
+		</ul>
+		<p>得分	：<span id="snake-score">0</span></p>
+	</section>
+
+</div>
+
+<!--debug-->
+<script src="js/wo.js"></script>
+<script src="js/event.js"></script>
+<script src="js/input.js"></script>
+<script src="js/vec.js"></script>
+<script src="js/color.js"></script>
+<script src="js/stage.js"></script>
+<script src="js/entities.js"></script>
+<script src="js/snake.js"></script>
+
+<!--all in one
+<script src="js/snake-game-packed.js"></script>-->
+<script>
+	document.addEventListener('DOMContentLoaded',function() {
+		// 网格单位长度, 默认 40
+		// SnakeGame.unit = 60;
+		
+		// 显示调试用网格, 默认 false
+		// SnakeGame.debug = true;
+		
+		// 设定穿墙, 默认 true
+		// SnakeGame.penetrable = false;
+		
+		// canvas,宽，高，缩放
+		SnakeGame.init('#snake-game',720,480,1);
+		// SnakeGame.init('#snake-game',480,320,2);
+	},false);
+</script>	
+</body>
+</html>
