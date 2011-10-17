@@ -137,19 +137,13 @@ var Snake = Entity.extend({
 			this.kill();
 			return;
 		}
-		if( this.collideWithVector(bean.position) ){
+		if( this.collideWith(bean.position) ){
 			stage.remove(bean);
 			this.addTail();
-			Bean.spawn(Color.random());
 			this.emit('score');
+			Bean.spawn(Color.random());
 		}
 		// this._super()
-	},
-	forEachPart : function(fn,tailsonly) {
-		var parts = this.parts, len = parts.length, i = tailsonly ? 1 : 0;
-		while(i < len){
-			if( fn(parts[i],i++) === false ) break;
-		}
 	},
 	move : function(direction) {
 		if( !direction ){
@@ -165,35 +159,24 @@ var Snake = Entity.extend({
 		parts.pop();
 		parts.unshift(head.add(direction));
 		
-		// this.parts = [this.parts[0].add(direction)].concat( this.parts.slice(0,this.parts.length-1) );
-
 		this.direction = direction;
 		
 		return true;
 	},
 	collideWithTail : function() {
-		var collided = false, head = this.head;
-		this.forEachPart(function(tail) {
-			if(tail.eq(head)){
-				collided = true;
-				return false
-			}
-		},true);
-		return collided;
+		var head = this.head;
+		return this.tails.some(function(tail) {
+			return tail.eq(head);
+		});
 	},
-	collideWithVector : function(vec) {
-		var collided = false, head = this.head;
-		this.forEachPart(function(p) {
-			if(vec.eq(head)){
-				collided = true;
-				return true;
-			}
+	collideWith : function(vec) {
+		return this.parts.some(function(p) {
+			return vec.eq(p)
 		})
-		return collided;
 	},
 	collideWithWall : function() {
-		var collided = false, reset;
-		this.forEachPart(function(p) {
+		var reset;
+		return this.parts.some(function(p) {
 			// -> 上下左右
 			if(p.y < 0){
 				reset = [p.x,max_unit_y-1];
@@ -205,15 +188,13 @@ var Snake = Entity.extend({
 				reset = [0,p.y];
 			}
 			if(reset){
-				collided = true;
 				// 穿墙后重置位置
 				if( penetrable ){
 					p.set(reset);
 				}
-				return false;
+				return true;
 			}
 		});
-		return collided;
 	},
 	kill : function() {
 		this.parts.pop();
@@ -341,7 +322,7 @@ var Bean = Entity.extend({
 Bean.spawn = function(color) {
 	var half = unit / 2, pos;
 	
-	while( snake.collideWithVector( pos = rand_pos() ) ){ }
+	while( snake.collideWith( pos = rand_pos() ) ){ }
 
 	bean = new Bean(pos.x,pos.y,half-2,color);
 	bean.position = pos;
