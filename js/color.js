@@ -9,14 +9,18 @@ function Color(ary) {
 	
 	if( ary.length < 3 || ary.some(isNaN) ) throw TypeError('Invalid color arguments')
 	
-	this.el = ary;
+	Object.defineProperty(this,'el',{
+		value : ary,
+		enumerable : false, configurable : false, writable : true
+	});
 
 	['r','g','b','a'].forEach(function (key, i) {
 		Object.defineProperty(this, key, {
 			get : function () { return this.el[i] },
-			set : function(value) { this.el[i] = value }
+			set : function(value) { this.el[i] = value },
+			enumerable : true, configurable : false
 		})
-	}.bind(this));
+	},this);
 
 	this.a || (this.a = 1);
 };

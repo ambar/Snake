@@ -7,16 +7,20 @@ function Vector(ary) {
 	if (!(this instanceof Vector)) {
 		return new Vector(ary);
 	}
-	this.el = ary || [0, 0];
 
-	var vec = this;
+	Object.defineProperty(this,'el',{
+		value : ary || [0, 0],
+		enumerable : false, configurable : false, writable : true
+	});
+
 	['x', 'y', 'z'].forEach(function (key, i) {
-		Object.defineProperty(vec, key, {
+		Object.defineProperty(this, key, {
 			get: function () {
 				return this.get(i)
-			}
+			},
+			enumerable : true, configurable : false
 		})
-	})
+	},this);
 };
 
 Vector.prototype = {
@@ -29,9 +33,9 @@ Vector.prototype = {
 	},
 	add: function (vec) {
 		var el = vec.el;
-		return Vector(this.el.map(function (e, i) {
+		return this.map(function(e,i) {
 			return e + el[i];
-		}));
+		})
 	},
 	map: function (fn) {
 		return new Vector(this.el.map(fn))
@@ -52,11 +56,11 @@ Vector.prototype = {
 	}
 }
 
-Vector.up = Vector([0, -1]);
-Vector.down = Vector([0, 1]);
-Vector.left = Vector([-1, 0]);
+Vector.up    = Vector([0, -1]);
+Vector.down  = Vector([0, 1]);
+Vector.left  = Vector([-1, 0]);
 Vector.right = Vector([1, 0]);
-Vector.zero = Vector([0, 0]);
+Vector.zero  = Vector([0, 0]);
 
 // exports
 (host.wo || (host.wo = {})).Vector = Vector;
